@@ -17,10 +17,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Librerias
+
 ```{r librerias}
 
 ```
-
 
 # Letura de datos
 
@@ -32,6 +32,7 @@ data.vg.raw <- read.csv(data_file,
 head(data.vg.raw)
 str(data.vg.raw)
 ```
+
 # Transformación de los datos
 
 ```{r}
@@ -41,12 +42,15 @@ data.vg.raw$Platform <- as.factor(data.vg.raw$Platform)
 data.vg.raw$Publisher <- as.factor(data.vg.raw$Publisher)
 
 ```
+
 ```{r}
 summary(data.vg.raw)
 ```
+
 ```{r}
 length(unique(data.vg.raw$Name))
 ```
+
 ```{r}
 filter(data.vg.raw, Name=="FIFA 15")
 ```
@@ -55,6 +59,7 @@ filter(data.vg.raw, Name=="FIFA 15")
 duplicados <- data.vg.raw[duplicated(data.vg.raw$Name), ]
 duplicados
 ```
+
 ```{r}
 duplicated(data.vg.raw$Name)
 ```
@@ -63,6 +68,3 @@ duplicated(data.vg.raw$Name)
 duplicados <- data.vg.raw[duplicated(data.vg.raw$Name), ]
 duplicados
 ```
-
-
-

@@ -13,6 +13,7 @@ editor_options:
   markdown: 
     wrap: 72
 ---
+
 ```{r}
 data_path<- file.path("C:/Users/Family2/Documents/4SEMESTRE/Estadistica_IV/UNIDAD_1")
 data_file<- file.path(data_path, "vgsales.csv")
@@ -31,22 +32,23 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
----
-````{r}
+## Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
 data.vg.raw$Year<- as.integer(data.vg.raw$Year)
 summary(data.vg.raw)
 data.vg.raw$Genre<- as.factor(data.vg.raw$Genre)
 summary(data.vg.raw)
-````
-````{r}
+```
+
+```{r}
 unique(data.vg.raw$Name)
-````
+```
 
-````{r}
+```{r}
 length(unique(data.vg.raw$Name))
-````
+```
 
-````{r}
+```{r}
 filter(data.vg.raw,Name=="FIFA 15")
-````
+```

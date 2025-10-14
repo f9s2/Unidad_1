@@ -13,7 +13,8 @@ editor_options:
 ---
 
 # Librerias
-```{r librerias}
+
+```{r librerias, message=TRUE, warning=TRUE}
 library(ggplot2)
 library(dplyr)
 ```
@@ -21,7 +22,7 @@ library(dplyr)
 # Letura de datos
 
 ```{r}
-data_path <- file.path("C:/Users/Family2/Documents/4SEMESTRE/ESTADISTICA4")
+data_path <- file.path("C:/Users/Family2/Documents/4SEMESTRE/Estadistica_IV/UNIDAD_1")
 data_file <- file.path(data_path, "vgsales.csv")
 data.vg.raw <- read.csv(data_file,
                  stringsAsFactors = F,na.strings = ".",header = T,sep=",")
@@ -35,13 +36,13 @@ summary(data.vg.raw)
 
 # Limpieza de datos
 
-
 ```{r}
 data.vg <- data.vg.raw 
 data.vg$Platform <- factor(data.vg$Platform)
 data.vg$Year <- as.numeric(data.vg$Year)
 summary(data.vg)
 ```
+
 ```{r}
 str(data.vg.raw)
 unique(data.vg.raw$Year)
@@ -49,14 +50,14 @@ filter(data.vg.raw, Year=="N/A")
 
 ```
 
-
 ```{r}
 unique(data.vg$Platform)
 filter(data.vg, Name=="FIFA 15")
 hist(data.vg$NA_Sales )
 ```
 
-Calculemos la proporcion de los datos missings Esto nos ayudará a decidir la estrategia (borrar vs. llenar)
+Calculemos la proporcion de los datos missings Esto nos ayudará a
+decidir la estrategia (borrar vs. llenar)
 
 ```{r}
 # Contar NA por columna
@@ -71,17 +72,19 @@ print(round(porcentaje_na, 2))
 
 ```
 
-
-
 ```{r}
 unique(data.vg$Publisher)
 filter(data.vg, Publisher==" ")
 
 ```
 
-A año le faltan 271 valores (aprox 1,63%). Dado que este porcentajee es muy pequeño, la estrategia más segura y sencilla es eliminar estas filas. Intentar 'adivinar' (imputar) el año o la editorial podría generar interferencias y llevar a conclusiones incorrectas. Queremos que nuestro análisis se base en datos completos y precisos. Usaremos .dropna() para eliminar las filas que contienen valores NaN en las columnas especificadas.
-
-
+A año le faltan 271 valores (aprox 1,63%). Dado que este porcentajee es
+muy pequeño, la estrategia más segura y sencilla es eliminar estas
+filas. Intentar 'adivinar' (imputar) el año o la editorial podría
+generar interferencias y llevar a conclusiones incorrectas. Queremos que
+nuestro análisis se base en datos completos y precisos. Usaremos
+.dropna() para eliminar las filas que contienen valores NaN en las
+columnas especificadas.
 
 ```{r}
 # DataFrame de ejemplo con missing values
@@ -104,14 +107,11 @@ cat("Filas después de complete.cases():", nrow(df_completo), "\n")
 
 ```
 
-
 # Tendencia Central
 
 ```{r}
 unique(data.vg$Platform)
 ```
-
-
 
 ```{r}
 
@@ -125,7 +125,9 @@ ggplot( df , aes(x = NA_Sales)) +
   theme_minimal()
 
 ```
+
 #Muestra aleatoria de 300 observaciones
+
 ```{r}
 # Fijamos una semilla para obtener siempre el mismo resultado
 set.seed(123)
@@ -137,6 +139,7 @@ head(data.vg.sample)
 ```
 
 #Calcular media y desviación estándar
+
 ```{r}
 # Calcular media y desviación estándar de la población
 media_poblacion <- mean(df_sin_na$Global_Sales, na.rm = TRUE)
@@ -156,12 +159,13 @@ cat("Media:", media_muestra, "\n")
 cat("Desviación estándar:", desv_muestra, "\n\n")
 
 cat("Comparación:\n")
-cat("Diferencia entre medias:", media_muestra - media_poblacion, "\n")
+cat("Diferencia entre medias:", media_muestra - media_poblacion, "\n")<
 cat("Diferencia entre desviaciones estándar:", desv_muestra - desv_poblacion, "\n")
 
 ```
 
 #Visualización
+
 ```{r}
 # Añadimos una columna para identificar la fuente
 df_sin_na$Tipo <- "Población"
@@ -181,4 +185,3 @@ ggplot(datos_comparados, aes(x = Global_Sales, fill = Tipo)) +
   theme_minimal()
 
 ```
-
